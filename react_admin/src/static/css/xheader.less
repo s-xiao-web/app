@@ -1,0 +1,40 @@
+@main-color: #515151;
+@font-white: #fff;
+@font-hover-color: #ccc;
+@bac-hover-color: #4a4a4a;
+// ablut size
+@font14:14;
+@font16:16;
+@font18:18;
+
+.flex (@just:center) {
+  display: flex;
+  justify-content: @just;
+  align-items: center;
+}
+.cur {
+  cursor: pointer;
+}
+
+.headerwrap {
+  font-size: @font14;
+  color:  @font-hover-color;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  background:@main-color;
+  .left-wrap {
+    width: 660px;
+    .flex(space-between);
+    li {
+      height: 40px;
+      padding: 0 20px;
+    }
+    li:hover {
+      color: @font-white;
+      background: #4a4a4a;
+    }
+  }
+}
