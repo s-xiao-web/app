@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
     "koa-controllers": "^0.1.6",
     "moment": "^2.22.2",
     "mysql2": "^1.6.4",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@types/koa": "^2.0.47",
+    "@types/koa-bodyparser": "^4.2.1",
     "@types/sequelize": "^4.27.32",
     "sequelize-cli": "^5.4.0"
   }

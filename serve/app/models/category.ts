@@ -2,9 +2,9 @@ import * as Sequelize from 'sequelize'
 import {Instance} from 'sequelize'
 import sequelize from "./index";
 interface Fields {
-  id:number;
-  createdAt: Date;
-  updatedAt: Date;
+  id?:number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 interface UserFields extends Fields{
