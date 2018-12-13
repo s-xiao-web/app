@@ -17,11 +17,11 @@
           <div class="list" slot-scope="{node, data}">
             <span>{{data.name}}</span>
             <div class="handel_line">
-              <el-button type="text">添加分类</el-button>
+              <el-button type="text" @click.stop="addChild(data)">添加分类</el-button>
               <span class="line">|</span>
-              <el-button type="text">修改</el-button>
+              <el-button type="text" @click.stop="updataChild(data)">修改</el-button>
               <span class="line">|</span>
-              <el-button type="text">删除</el-button>
+              <el-button type="text" @click.stop="remove(data)">删除</el-button>
             </div>
           </div>
         </el-tree>
@@ -44,10 +44,11 @@ export default class Category extends Vue {
   handleClick() {
     // console.log( tab, event )
   }
-  async addMenuFn(pid: number) {
+  async addMenuFn(pid: number, val: any) {
+    let value = val || this.input;
     let { data } = await axios.post("/api/admin/category/addCategory", {
       pid,
-      name: this.input
+      name: value
     });
     if (data.code == 201) {
       this.$notify({
@@ -58,7 +59,7 @@ export default class Category extends Vue {
     } else {
       this.$notify({
         title: "成功",
-        message: "这是一条成功的提示消息",
+        message: "【-菜单-】添加成功",
         type: "success"
       });
       this.getCategoryData();
@@ -67,7 +68,65 @@ export default class Category extends Vue {
   async getCategoryData() {
     let { data } = await axios.get("/api/admin/category");
     this.category = data;
-    console.log(data);
+  }
+  async addChild(data: any) {
+    this.$prompt("请输入需要添加的分类", "添加分类", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消"
+    })
+      .then(async ({ value }) => {
+        this.addMenuFn(data.id, value);
+      })
+      .catch(() => {
+        this.$message({
+          type: "info",
+          message: "取消输入"
+        });
+      });
+  }
+  async updataChild(data: any) {
+    this.$prompt("请输入需要添加的分类", "添加分类", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      inputValue: data.name
+    })
+      .then(async ({ value }) => {
+        await axios
+          .post("/api/admin/category/uplodeCate", {
+            id: data.id,
+            name: value
+          })
+          .then(res => {
+            this.getCategoryData();
+          });
+      })
+      .catch(() => {
+        this.$message({
+          type: "info",
+          message: "取消输入"
+        });
+      });
+  }
+  async remove({ id }: any) {
+    this.$confirm("此操作将永久删除g该分类, 是否继续?", "提示", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning"
+    })
+      .then(async () => {
+        let data = await axios.post("/api/admin/category/remove", { id });
+        this.getCategoryData();
+        this.$message({
+          type: "success",
+          message: "删除成功!"
+        });
+      })
+      .catch(() => {
+        this.$message({
+          type: "info",
+          message: "已取消删除"
+        });
+      });
   }
   async created() {
     this.getCategoryData();
@@ -83,7 +142,7 @@ export default class Category extends Vue {
   flex: 1;
   align-self: center;
   justify-content: space-between;
-  .handel_line .line{
+  .handel_line .line {
     color: #eee;
     padding: 0 10px;
   }
