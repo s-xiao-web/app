@@ -1,7 +1,7 @@
 import { Controller, Get, Ctx, Post } from 'koa-controllers'
 import { Context } from 'koa';
 import {CategoryModel}  from '../../models/category'
-import Sequelize from 'sequelize'
+import * as Sequelize from 'sequelize'
 import Tree from '../../libs/Tree'
 
 @Controller
@@ -20,6 +20,7 @@ export class AdminIndexController {
     let datas = new Tree(data).getTree(0)
     return ctx.body = datas
   }
+
   @Post('/api/admin/category/addCategory')
   public async add ( @Ctx ctx: Context ) {
     let name = ctx.request.body.name || ''
@@ -78,7 +79,7 @@ export class AdminIndexController {
   @Post('/api/admin/category/remove')
   public async remove ( @Ctx ctx: Context ) {
     let id = parseFloat(ctx.request.body.id)
-    
+
     let data = await CategoryModel.findById(id)
     if (!data) {
       return ctx.body = {
@@ -98,6 +99,40 @@ export class AdminIndexController {
     return ctx.body = {
       code: 200,
       data: '删除成功'
+    }
+  }
+  
+  @Post('/api/admin/category/handeldrop')
+  public async handeldrop ( @Ctx ctx: Context ) {
+    let fromId = parseFloat(ctx.request.body.fromId)
+    let toId = parseFloat(ctx.request.body.toId)
+ 
+    let datas = await CategoryModel.findAll({
+      where: {
+        [Sequelize.Op.or]: [
+          {id:fromId},
+          {pid:fromId}
+        ]
+      }
+    })
+    
+    datas.map(async item => {
+      await CategoryModel.update({pid: toId},
+        {
+          where:{
+            [Sequelize.Op.or]: [
+              {id:fromId},
+              {pid:fromId}
+            ]
+          }
+        }
+      )
+      // item.set('pid', toId)
+      // item.save()
+    })
+    return ctx.body = {
+      code: 200,
+      data:datas
     }
   }
 }

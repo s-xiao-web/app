@@ -13,9 +13,10 @@
           </el-row>
         </div>
 
-        <el-tree :data="category">
+        <el-tree :data="category" draggable node-key="id" @node-drop="treeDropFn">
           <div class="list" slot-scope="{node, data}">
             <span>{{data.name}}</span>
+            <span>{{data.id}}</span>
             <div class="handel_line">
               <el-button type="text" @click.stop="addChild(data)">添加分类</el-button>
               <span class="line">|</span>
@@ -127,6 +128,15 @@ export default class Category extends Vue {
           message: "已取消删除"
         });
       });
+  }
+  async treeDropFn(draggingNode: any, dropNode: any, dropType: any, ev: any) {
+    let fromId = draggingNode.data.id;
+    let toId = dropNode.data.id;
+    if ( dropType !=='inner' && dropNode.data.pid === 0 ) {
+      toId = 0
+    }
+    let res = await axios.post('/api/admin/category/handeldrop',{fromId, toId})
+    console.log(res)
   }
   async created() {
     this.getCategoryData();
