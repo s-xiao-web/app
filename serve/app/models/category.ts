@@ -1,18 +1,14 @@
 import * as Sequelize from 'sequelize'
 import {Instance} from 'sequelize'
 import sequelize from "./index";
-interface Fields {
-  id?:number;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+import Fields from "./file_interface"
 
-interface UserFields extends Fields{
+interface CategoryFields extends Fields{
   name:string;
   pid:number;
 }
 
-export const CategoryModel = sequelize.define<Instance<UserFields>,UserFields>('category', {
+export const CategoryModel = sequelize.define<Instance<CategoryFields>,CategoryFields>('category', {
   id: {
     type: Sequelize.INTEGER, // 整数类型
     primaryKey: true, // 是否为主键

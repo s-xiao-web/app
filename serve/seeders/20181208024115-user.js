@@ -22,6 +22,46 @@ module.exports = {
         updatedIpAt: '127.0.0.1',
         createdAt: moment().format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: moment().format('YYYY-MM-DD HH:mm:ss')
+      },
+      {
+        id: 3,
+        username: 'a',
+        password: md5('123456'),
+        disabled: false,
+        createdIpAt: '127.0.0.1',
+        updatedIpAt: '127.0.0.1',
+        createdAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: moment().format('YYYY-MM-DD HH:mm:ss')
+      },
+      {
+        id: 4,
+        username: 'b',
+        password: md5('123456'),
+        disabled: false,
+        createdIpAt: '127.0.0.1',
+        updatedIpAt: '127.0.0.1',
+        createdAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: moment().format('YYYY-MM-DD HH:mm:ss')
+      },
+      {
+        id: 5,
+        username: 'c',
+        password: md5('123456'),
+        disabled: false,
+        createdIpAt: '127.0.0.1',
+        updatedIpAt: '127.0.0.1',
+        createdAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: moment().format('YYYY-MM-DD HH:mm:ss')
+      },
+      {
+        id: 6,
+        username: 'd',
+        password: md5('123456'),
+        disabled: false,
+        createdIpAt: '127.0.0.1',
+        updatedIpAt: '127.0.0.1',
+        createdAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: moment().format('YYYY-MM-DD HH:mm:ss')
       }
     ]);
   },
