@@ -3,7 +3,7 @@ import { Context } from 'koa';
 import {UserModel}  from '../../models/user'
 import * as Sequelize from 'sequelize'
 import Tree from '../../libs/Tree'
-
+import * as md5 from 'md5'
 @Controller
 export class AdminIndexUser {
   // 获取主表数据
@@ -50,7 +50,90 @@ export class AdminIndexUser {
         disabled: Number(data.get('disabled'))
       }
     }
+  }
+  // 删除用户
+  @Post('/api/admin/user/delate')
+  public async removeUser(@Ctx ctx:Context) {
+    let id = ctx.request.body.id
+    let data = await UserModel.findById(id)
+    if (!data) {
+      return ctx.body = {
+        code: 201,
+        data: '你输入的ID不存在'
+      }
+    }
+    data.destroy()
+    return ctx.body = {
+      code: 200,
+      data: '成功'
+    }
+  }
+  // 用户注册
+  @Post('/api/main/user/register')
+  public async register( @Ctx ctx: Context ) {
+    let {username, password, repassword} = ctx.request.body
 
+    if (!username || !password || !repassword) {
+      return ctx.body = {
+        code: 1,
+        data: '存在null值'
+      }
+    }
+    if (!Object.is(password,repassword)) {
+      return ctx.body = {
+        code: 2,
+        data: '两次密码输入的不一致'
+      }
+    }
+    
+    let data = await UserModel.findOne({
+      where: {
+        username:username
+      }
+    })
+    if (data) {
+      return ctx.body = {
+        code: 3,
+        data: '用户名存在重复'
+      }
+    }
+    let sucData = await UserModel.build({
+      username:username,
+      password:md5(password),
+      createdIpAt:ctx.ip,
+      updatedIpAt:ctx.ip
+    })
+    await sucData.save()
+    return ctx.body = {
+      code:0,
+      data: 'sucess'
+    }
+  }
+  // 用户登录
+  @Post('/api/main/user/login')
+  public async login(@Ctx ctx: Context) {
+    console.log(ctx.ip)
+    let {username, password} = ctx.request.body
+    if (!username||!password) {
+      return ctx.body = {
+        code: 1,
+        body: '你输入的存在问题'
+      }
+    }
+    let data = await UserModel.findOne({
+      where:{
+        username
+      }
+    })
+    if (!data || md5(password) != data.get('password')) {
+      return ctx.body = {
+        data: '用户名或密码不对'
+      }
+    } else {
+      return ctx.body = {
+        data: 'success 登录成功'
+      }
+    }
   }
 }
 

@@ -23,6 +23,11 @@ const router =  new Router({
       component: resolve => require( ['./views/category.vue'],resolve )
     },
     {
+      path: '/other',
+      name: '/other',
+      component:resolve => require( ['./views/other.vue'], resolve)
+    },
+    {
       path: "/recommend",
       name: "/recommend"
     },

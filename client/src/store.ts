@@ -38,6 +38,10 @@ export default new Vuex.Store({
         "text": "收藏",
         "name": "/collection"
       },
+      {
+        "text": "其他",
+        "name": "/other"
+      }
     ],
     getRouter: {}
   },
