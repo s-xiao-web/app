@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Xheader from '../component/xheader'
+import Xheader from '../component/xheader';
+import axios from 'axios'
 class Home extends Component {
   constructor() {
     super()
@@ -15,6 +16,15 @@ class Home extends Component {
         <Xheader navData={this.state.navData} />
       </div>
     )
+  }
+  async componentWillMount() {
+    let {data} = await axios.get("/api/admin/category")
+    let arr = data.map((item) => {
+      return item.name
+    })
+    this.setState({
+      navData:arr
+    })
   }
 }
 

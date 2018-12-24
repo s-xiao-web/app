@@ -15,7 +15,14 @@
 .cur {
   cursor: pointer;
 }
-
+// 登录css
+.login_wrap {
+  display: flex;
+  .login,.regsit {
+    cursor: pointer;
+    margin-right: 20px;
+  }
+}
 .headerwrap {
   font-size: @font14;
   color:  @font-hover-color;
@@ -26,8 +33,9 @@
   padding: 0 20px;
   background:@main-color;
   .left-wrap {
-    width: 660px;
     .flex(space-between);
+    align-items: center;
+    height: 100%;
     li {
       height: 40px;
       padding: 0 20px;
@@ -36,5 +44,16 @@
       color: @font-white;
       background: #4a4a4a;
     }
+  }
+  .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.dialog_wrap{
+  li:nth-child(1) {
+    margin-bottom: 10px;
   }
 }

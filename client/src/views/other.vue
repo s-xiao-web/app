@@ -51,8 +51,8 @@ export default class other extends Vue {
   }
   async loginFn() {
     axios.post('/api/main/user/login',{...this.loginData}).then(res => {
-      let {data} = res.data
-      alert(data)
+      let {data} = res
+      
     })
   }
 

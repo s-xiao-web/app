@@ -4,6 +4,8 @@ import './index.css';
 import App from './view/home.js';
 import * as serviceWorker from './serviceWorker';
 import './static/public.less';
+import 'antd/dist/antd.css';
+import 'moment/locale/zh-cn';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

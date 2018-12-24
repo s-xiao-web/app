@@ -125,6 +125,12 @@ export class AdminIndexUser {
         username
       }
     })
+    if (data.get('disabled')) {
+      return ctx.body = {
+        code: 3,
+        message: '该用户已经被禁用'
+      }
+    }
     if (!data || md5(password) != data.get('password')) {
       return ctx.body = {
         data: '用户名或密码不对'

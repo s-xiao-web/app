@@ -5,6 +5,8 @@
   "dependencies": {
     "@babel/core": "7.1.0",
     "@svgr/webpack": "2.4.1",
+    "antd": "^3.11.5",
+    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
@@ -119,5 +121,6 @@
     "node-less": "^1.0.0",
     "node-sass": "^4.11.0",
     "sass": "^1.15.2"
-  }
+  },
+  "proxy":"http://127.0.0.1:8888"
 }
