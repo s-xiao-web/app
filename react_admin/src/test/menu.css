@@ -1,0 +1,16 @@
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 20%;
+  min-width: 20%;
+  background-color: slategray;
+  color: ghostwhite;
+}
+
+.main-menu  a {
+  color: ghostwhite;
+  text-align: center;
+  padding: 1em;
+  font-size: 1.5em;
+}
