@@ -3,14 +3,14 @@ import { Modal } from 'antd'
 const LoginBox = (props) => {
   return (
     <Modal
-      title="Basic Modal"
-      visible={this.state.visible}
-      onOk={this.handleOk}
-      onCancel={this.handleCancel}
+      title="登录"
+      visible={props.visible}
+      onOk={props.onOk}
+      onCancel={props.onCancel}
+      cancelText='关闭'
+      okText="确定"
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+    {props.children}
     </Modal>
   )
 }

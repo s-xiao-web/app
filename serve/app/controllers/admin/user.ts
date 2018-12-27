@@ -112,7 +112,6 @@ export class AdminIndexUser {
   // 用户登录
   @Post('/api/main/user/login')
   public async login(@Ctx ctx: Context) {
-    console.log(ctx.ip)
     let {username, password} = ctx.request.body
     if (!username||!password) {
       return ctx.body = {
@@ -125,7 +124,8 @@ export class AdminIndexUser {
         username
       }
     })
-    if (data.get('disabled')) {
+    console.log( data )
+    if (data && data.get('disabled')) {
       return ctx.body = {
         code: 3,
         message: '该用户已经被禁用'
@@ -137,7 +137,10 @@ export class AdminIndexUser {
       }
     } else {
       return ctx.body = {
-        data: 'success 登录成功'
+        data: {
+          code: 0,
+          data: 'success 登录成功'
+        }
       }
     }
   }

@@ -7,15 +7,15 @@ const imgArr = [
   require('../../static/img/banner/banner2.jpg'),
   require('../../static/img/banner/banner3.jpg')
 ]
-const icon = require('../../static/img/banner/icon.png')
+// const icon = require('../../static/img/banner/icon.png')
 
-const Xnav = (props) => {
+// const Xnav = (props) => {
 
-}
+// }
 
-const Xbox = (props) => {
+// const Xbox = (props) => {
 
-}
+// }
 
 class Xbanner extends Component {
   constructor(props) {
@@ -36,13 +36,13 @@ class Xbanner extends Component {
           {
             imgArr.map((v,i) => {
               return (
-                <div><img src={v} alt=""/></div>
+                <div key={i}><img src={v} alt=""/></div>
               )
             })
           }
         </Carousel>
         <div className="banner_aside_wrap">
-          <ul class="aside_tab">
+          <ul className="aside_tab">
             <li>
               <i></i>
               <span>菜谱大全</span>
