@@ -15,11 +15,11 @@ const LeftNavWrap = (props) => {
   )
 }
 
-const RightWrap = () => {
+const RightWrap = (props) => {
   return(
     <div className="right_nav_wrap">
       <ul className="login_wrap">
-        <li><span>登录</span></li>
+        <li><span onClick={props.onClick}>登录</span></li>
         <li><span>注册</span></li>
       </ul>
       <ul className="other_wrap">
@@ -51,7 +51,7 @@ class Xheader extends Component {
     return (
       <div className="header_wrap">
         <LeftNavWrap data={this.state.navList} />
-        <RightWrap />
+        <RightWrap onClick={props.onClick}/>
       </div>
     )
   }
