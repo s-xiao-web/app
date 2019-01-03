@@ -1,0 +1,45 @@
+.u_header_box {
+  height: 240px;
+  background: url(../img/bg.jpg) no-repeat;
+  background-size: 100% 100%; 
+  .u_content {
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    .u_content_left {
+      display: flex;
+      .userImg {
+        width: 154px;
+        height: 154px;
+        border-radius: 50%;
+        background: blueviolet;
+        overflow: hidden;
+      }
+      .useMsg {
+        padding-left: 30px;
+        margin-top: 40px;
+        p:nth-child(1) {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+    }
+    .u_content_right {
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-end;
+      ul {
+        display: flex;
+        justify-content: flex-end;
+        li {
+          text-align: center;
+          padding: 0 10px;
+        }
+      }
+    } 
+  }
+}

@@ -8,7 +8,7 @@ import * as md5 from 'md5'
 export class AdminIndexUser {
   // 获取主表数据
   @Get('/api/admin/user')
-  public async index(@Ctx ctx:Context) {
+  public async index(@Ctx ctx: Context ) {
     //页码数 从 1 开始计算 
     let page = Number(ctx.query.page) || 1
     // 每页显示2条

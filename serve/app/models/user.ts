@@ -6,6 +6,7 @@ interface UserFields extends Fields{
   username?:string;
   password?:string;
   disabled?: boolean;
+  avatar?: string;
   createdIpAt?: string;
   updatedIpAt?: string;
 }
@@ -21,6 +22,11 @@ export const UserModel = sequelize.define<Instance<UserFields>,UserFields>('user
   username: {
     type: Sequelize.STRING(50),
     unique: true,
+    allowNull: false,
+    defaultValue: ''
+  },
+  avatar: {
+    type: Sequelize.STRING,
     allowNull: false,
     defaultValue: ''
   },

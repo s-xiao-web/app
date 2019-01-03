@@ -1,17 +1,16 @@
 import React from 'react'
-import { HashRouter, Route, Switch,  } from 'react-router-dom'
+import { BrowserRouter as Router,HashRouter, Route, Switch,  } from 'react-router-dom'
 import Home from '../view/Home/Home'
-import { About } from '../page/page' 
-
-let Router = () => {
+import UserInfo from '../view/User/UserInfo'
+let Routers = () => {
   return (
-    <HashRouter>
+    <Router>
       <Switch>
         <Route path="/" exact component={Home}/> 
-        <Route path="/about" component={About}/> 
+        <Route path="/user" component={UserInfo}/> 
       </Switch>
-    </HashRouter>
+    </Router>
   )
 }
 
-export default Router
+export default Routers

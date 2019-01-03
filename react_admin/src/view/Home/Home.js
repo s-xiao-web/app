@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import Xheader from '../../component/PublicPage/XHeader'
 import Xbanner from '../../component/HomePage/Xbanner'
-
+import Layout from '../Layout'
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -9,19 +8,13 @@ class Home extends Component {
       navList: []
     }
   }
-
-  showLogin() {
-
-  }
-
   render() {
     return (
-      <div>
-        <Xheader />
+      <Layout>
         <div className="content">
           <Xbanner />
         </div>
-      </div>
+      </Layout>
     )
   }
 }

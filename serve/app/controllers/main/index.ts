@@ -1,22 +1,11 @@
 import { Controller, Get, Ctx } from 'koa-controllers'
-import { Context } from 'koa';
-import {CategoryModel}  from '../../models/category'
-import Tree from '../../libs/Tree'
+import * as Koa from 'koa';
+
 @Controller
 export class MainIndexController {
-  @Get('/')
-  public async index( @Ctx ctx: Context ) {
-    // CategoryModel.findById(1)
-    const categoryData = await CategoryModel.findAll()
-    let data = categoryData.map(category => {
-      return {
-        id: category.get('id'),
-        pid: category.get('pid'),
-        name: category.get('name'),
-      }
-    })
-    let datas = new Tree(data).getTree(0)
-    ctx.body = datas
+  @Get('/index/main/index/datalist')
+  public async login(@Ctx ctx: Context) {
+    
   }
 }
 

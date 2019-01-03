@@ -10,9 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/koa-session": "^5.7.4",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-controllers": "^0.1.6",
+    "koa-multer": "^1.0.2",
+    "koa-session": "^5.10.0",
     "md5": "^2.2.1",
     "moment": "^2.22.2",
     "mysql2": "^1.6.4",
